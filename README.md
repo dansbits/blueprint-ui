@@ -17,10 +17,10 @@ npm run start
 ```
 
 ## Description of the problem and solution
-I chose to structure my solution as a Sinatra API backend with a single page application frontend built with React. This allows separation of concerns between the presentation layer and the backend.
+The problem addressed by this application is to take information provided by the API and present it to the end user in a useful way. Given the time constraints on implementation I opted to use off-the shelf components which would help me deliver a solution quickly - while leaving the solution open to customization. Specifically I generated a starter app using `create-react-app` as a starting point. I used Bulma as a CSS framework to quickly and easily structure information on the page. Long term I would think more about how best to present info to users but this was a starting place.
 
 ## Reasoning behind your technical choices
-I prefer a separate front and backend as the presentation and data processing have different concerns and it eases the development, CI/CD, testing, etc. if the two are kept separate. It also means that your frontend can be packaged and distributed efficiently via a CDN.
+I prefer a separate front and backend as the presentation and data processing have different concerns and it eases the development, CI/CD, testing, etc. if the two are kept separate. It also means that your frontend can be packaged and distributed efficiently via a CDN. I chose react and bulma to be able to iterate quickly.
 
 ## Describe how you would deploy this as a true production app on the platform of your choice:
 ### How would ensure the application is highly available and performs well?
