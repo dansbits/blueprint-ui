@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Blueprint UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Production
+I did not host this UI anywhere in production. It does retrive questions from the Heroku hosted API but the UI must be run locally.
 
-## Available Scripts
+## Running locally
 
-In the project directory, you can run:
+### Prerequisites
+Nodejs v14.18.1 - I'm sure this will run on other versions of node but this is what I had installed.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Install dependenceis and stat the server
+```
+npm install
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+npm run start
+```
 
-### `npm test`
+## Description of the problem and solution
+I chose to structure my solution as a Sinatra API backend with a single page application frontend built with React. This allows separation of concerns between the presentation layer and the backend.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Reasoning behind your technical choices
+I prefer a separate front and backend as the presentation and data processing have different concerns and it eases the development, CI/CD, testing, etc. if the two are kept separate. It also means that your frontend can be packaged and distributed efficiently via a CDN.
 
-### `npm run build`
+## Describe how you would deploy this as a true production app on the platform of your choice:
+### How would ensure the application is highly available and performs well?
+A React SPA can easily be compiled and deployed to a CDN designed for making sure your application can be efficiently distributed to users.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+As of now there are little to no assets (images, CSS, etc.) for this application but I would monitor the size of assets over time. Those things can become bloated if not monitored and impact performance of the application.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### How would you secure it?
+- Enforce use of SSL on the domain where it is hosted
+- Add authentication and authorization to the application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### What would you add to make it easier to troubleshoot problems while it is running live?
+- Exception tracking: I've used things like Sentry, Bugsnag, etc. in the past.
+- User analytics: While not errors per se, I would keep an eye on how users are actually using the application. Unusual patterns in usage could indicate that a user is having a problem - even if there is no exception raised.
 
-### `npm run eject`
+### Trade-offs you might have made, anything you left out, or what you might do differently if you were to spend additional time on the project
+I did not end up delivering the responses to the API endpoint to get the recommended assessments. This would requiring passing the response data from the ScreenerForm component back up to the App component. I worried that this would take too much time and would require some refactoring of App.js to prevent it from becoming bloated with concerns that should likely be handled by a separate class and/or child component. I think if I rushed it then the code would have been poorly organized and difficult to read/maintain.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+TESTS!
+In a real work scenario I'm adamant about writing tests. Given more time I would have added unit tests and some light integration test to my components. 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Link to other code you're particularly proud of
+*Lurn*
+I've not touched this in a while but started a machine learning library for Ruby, similar to scikit klearn.
+https://github.com/dansbits/lurn
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Link to your resume or public profile
+https://github.com/dansbits
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Please send these deliverables over at least 48 hours in advance of your scheduled interview time so we can review and come prepared with questions! If we don't receive your submission, we may opt to cancel or reschedule the interview so we can be sure we're using your and our time effectively

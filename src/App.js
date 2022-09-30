@@ -1,27 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
-import formData from "./mockForm";
 import ScreenerForm from "./components/ScreenerForm";
 import React from 'react';
 
 class App extends React.Component {
 
-  render() {
-    // TODO: replace this with a fetch call to retrieve the form from the API
-    const form = formData;
-    const displayName = formData.content.display_name;
-    const title = formData.content.sections[0].title;
-    const questions = formData.content.sections[0].questions;
-    const answers = formData.content.sections[0].answers;
+  constructor(props) {
+    super(props);
+    this.state = { form: null }
+  }
 
-    return (
-      <div className="container">
-        <nav className="level">
-          <div className="level-left is-size-4">Blueprint Screener</div>
-        </nav>
-        <ScreenerForm  displayName={displayName} title={title} questions={questions} answers={answers} />
-      </div>
-    );
+  async componentDidMount() {
+    const response = await fetch("https://blueprint-assessment-api.herokuapp.com/v1/screener/questions")
+    const form = await response.json()
+    this.setState({ form: form })
+  }
+
+  render() {
+    const form = this.state.form;
+
+    if(form) {
+      const displayName = form.content.display_name;
+      const title = form.content.sections[0].title;
+      const questions = form.content.sections[0].questions;
+      const answers = form.content.sections[0].answers;
+
+      return (
+        <div className="container">
+          <nav className="level">
+            <div className="level-left is-size-4">Blueprint Screener</div>
+          </nav>
+          <ScreenerForm  displayName={displayName} title={title} questions={questions} answers={answers} />
+        </div>
+      );
+    } else {
+      <h2>Loading...</h2>
+    }
   }
 }
 
